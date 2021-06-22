@@ -1,7 +1,7 @@
-//2021.05.20
+//2021.06.16
 <template>
   <div class="mui-scroll-wrapper haslogo">
-    <div class="mui-scroll" ref="scroll">
+    <div class="mui-scroll" ref="pulldown">
       <slot></slot>
     </div>
   </div>
@@ -46,6 +46,7 @@ import "@assets/lib/mui.pullToRefresh.material.js";
 export default {
   data() {
     return {
+      scroll: null,
       pulldown: null,
       timeoutSeed: null,
     };
@@ -53,9 +54,9 @@ export default {
   mounted() {
     var that = this;
     that.$nextTick(() => {
-      mui(that.$el).scroll();
+      that.scroll = mui(that.$el).scroll();
       if (that.enablePulldown === true) {
-        that.pulldown = mui(that.$refs.scroll).pullToRefresh({
+        that.pulldown = mui(that.$refs.pulldown).pullToRefresh({
           down: {
             callback: function () {
               that.$emit("update:pulling", true);
@@ -95,6 +96,14 @@ export default {
       clearTimeout(this.timeoutSeed);
       this.pulldown.endPullDownToRefresh();
     }
+  },
+  methods: {
+    scrollTo(y, time) {
+      time = time == null ? 300 : time;
+      if (this.scroll) {
+        this.scroll.scrollTo(0, y, time);
+      }
+    },
   },
   props: {
     enablePulldown: Boolean,

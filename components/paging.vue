@@ -1,10 +1,17 @@
-//2021.6.10
+//2021.6.22
 <template>
   <div class="paging">
     <div class="paging-btns">
-      <a class="prev" :class="{ disabled: prevDisabled }" @click="prev">«</a>
-      <picker :data="pickerData" :val.sync="innerPage" />
-      <a class="next" :class="{ disabled: nextDisabled }" @click="next">»</a>
+      <a class="prev" :class="{ disabled: prevDisabled }" @tap="prev">«</a>
+      <picker :data="pickerData" :val.sync="innerPage">
+        <roll-numbers
+          :number="innerPage"
+          :count="innerPage.toString().length"
+          :speed="0.5"
+        />
+        <div class="paging-number-shadow"></div>
+      </picker>
+      <a class="next" :class="{ disabled: nextDisabled }" @tap="next">»</a>
     </div>
   </div>
 </template>
@@ -30,6 +37,7 @@
   width: 80px;
   height: 40px;
   text-align: center;
+  padding: 0;
 }
 
 .paging .paging-btns > .prev,
@@ -72,22 +80,39 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.paging .paging-number-shadow {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: linear-gradient(#fff, #fff0, #fff);
+}
 </style>
 <script>
 import picker from "./picker";
+import rollNumbers from "./rollnumbers.vue";
 
 export default {
   data() {
     return {
       innerPage: 0,
       pickerData: [],
+      pageCount: 0,
     };
   },
   components: {
     picker,
+    rollNumbers,
   },
   mounted() {
     this.innerPage = this.page;
+    this.$emit("changed", {
+      page: this.innerPage,
+      pagingData: this.pagingData,
+    });
+    this.caculatePageCount();
     this.buildPickerData();
   },
   computed: {
@@ -97,8 +122,28 @@ export default {
     nextDisabled() {
       return !(this.innerPage < this.pageCount);
     },
+    pagingData() {
+      var pagingDatas = [];
+      if (this.innerPage > 0 && this.data != null) {
+        for (
+          var i = this.pageSize * (this.innerPage - 1);
+          i < this.pageSize * this.innerPage && i < this.data.length;
+          i++
+        ) {
+          pagingDatas.push(this.data[i]);
+        }
+      }
+      return pagingDatas;
+    },
   },
   methods: {
+    caculatePageCount() {
+      if (this.data == null) {
+        this.pageCount = 0;
+      } else {
+        this.pageCount = parseInt((this.data.length - 1) / this.pageSize + 1);
+      }
+    },
     prev() {
       if (!this.prevDisabled) {
         this.innerPage -= 1;
@@ -115,7 +160,7 @@ export default {
         newPickerData.push({ text: i, value: i });
       }
       this.pickerData = newPickerData;
-      if (this.pageCount > 0 && this.page == null) {
+      if (this.pageCount > 0 && (this.page == null || this.page == 0)) {
         this.innerPage = 1;
       } else if (this.pageCount < this.page) {
         this.innerPage = this.pageCount;
@@ -131,20 +176,32 @@ export default {
     innerPage(newValue) {
       if (newValue != this.page) {
         this.$emit("update:page", newValue);
+        this.$emit("changed", {
+          page: this.innerPage,
+          pagingData: this.pagingData,
+        });
       }
     },
     pageCount() {
       this.buildPickerData();
     },
+    data() {
+      this.$emit("changed", {
+        page: this.innerPage,
+        pagingData: this.pagingData,
+      });
+      this.caculatePageCount();
+    },
   },
   props: {
-    pageCount: {
-      type: Number,
-      default: 0,
-    },
     page: {
       type: Number,
       default: 0,
+    },
+    data: Array,
+    pageSize: {
+      type: Number,
+      default: 10,
     },
   },
 };

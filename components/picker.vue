@@ -1,13 +1,13 @@
-//2021.06.10
+//2021.06.22
 <template>
   <div
     class="picker"
     @tap="show"
     :class="[type == 'datePicker' ? 'picker-date' : 'picker-pop']"
   >
-    <div class="text">
-      {{ content }}
-    </div>
+    <slot
+      ><div class="text">{{ content }}</div>
+    </slot>
   </div>
 </template>
 <style>

@@ -1,4 +1,4 @@
-//2021.06.10
+//2021.06.16
 <template>
   <tooltip
     :message="message"
@@ -16,9 +16,6 @@ import tooltip from "@components/tooltip";
 export default {
   components: {
     tooltip,
-  },
-  mounted() {
-    console.log(this);
   },
   props: {
     message: String,
