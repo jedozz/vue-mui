@@ -18,3 +18,5 @@ js/yj.error.js
 js/yj.extend.js
 js/yj.vuerouter.js
 language/chinese_common.json
+.gitattributes
+.gitignore
