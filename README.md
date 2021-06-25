@@ -1,5 +1,5 @@
 ﻿# vue-mui-controls
-vue2.6 + mui3.7.2  封装控件
+vue2.6 + mui3.7.2 封装控件 图片列表 动画数字 滚动数字 分页 pikcer 区域滚动(下拉刷新)
 <h2>lib/mui.picker.all.yjmodify.js 修改了mui.picker.all.js文件，使其兼容vue</h2>
 <br/>
 <h2>components/actionSheet.vue 封装了mui的action sheet</h2>
