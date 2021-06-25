@@ -1,4 +1,4 @@
-//2021.6.22
+//2021.6.25
 <template>
   <div class="paging">
     <div class="paging-btns">
@@ -89,6 +89,11 @@
   right: 0;
   background-image: linear-gradient(#fff, #fff0, #fff);
 }
+
+.paging .rollnumber {
+  line-height: 40px;
+  height: 40px;
+}
 </style>
 <script>
 import picker from "./picker";
@@ -166,30 +171,31 @@ export default {
         this.innerPage = this.pageCount;
       }
     },
+    triggerChangedEvent() {
+      this.$emit("changed", {
+        page: this.innerPage,
+        pagingData: this.pagingData,
+      });
+    },
   },
   watch: {
     page(newValue) {
       if (newValue != this.innerPage) {
         this.innerPage = newValue;
+        this.triggerChangedEvent();
       }
     },
     innerPage(newValue) {
       if (newValue != this.page) {
         this.$emit("update:page", newValue);
-        this.$emit("changed", {
-          page: this.innerPage,
-          pagingData: this.pagingData,
-        });
+        this.triggerChangedEvent();
       }
     },
     pageCount() {
       this.buildPickerData();
     },
     data() {
-      this.$emit("changed", {
-        page: this.innerPage,
-        pagingData: this.pagingData,
-      });
+      this.triggerChangedEvent();
       this.caculatePageCount();
     },
   },

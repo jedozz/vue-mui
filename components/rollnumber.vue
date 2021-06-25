@@ -1,6 +1,6 @@
-//2021.06.22
+//2021.06.24
 <template>
-  <div class="rollnumber" :style="{ width, height }">
+  <div class="rollnumber">
     <div class="rollnumber-numbers">
       <div>0</div>
       <div>9</div>
@@ -32,6 +32,9 @@
   position: relative;
   overflow: hidden;
   display: inline-block;
+  line-height: 20px;
+  width: 10px;
+  height: 20px;
 }
 .rollnumber .rollnumber-numbers {
   position: absolute;
@@ -236,11 +239,6 @@ export default {
     };
   },
   mounted() {
-    this.$nextTick(() => {
-      var $number = $(this.$el).find(".rollnumber-numbers").children().first();
-      this.width = $number.outerWidth() + "px";
-      this.height = $number.outerHeight() + "px";
-    });
     this.rn = new RollNumber(this.$el);
     this.rn.setSpeed(this.speed);
     if (this.number == null) {
