@@ -2,7 +2,7 @@
 vue2.6 + mui3.7.2  封装控件
 <h2>lib/mui.picker.all.yjmodify.js 修改了mui.picker.all.js文件，使其兼容vue</h2>
 <br/>
-<p>components/actionSheet.vue 封装了mui的action sheet</p>
+<h2>components/actionSheet.vue 封装了mui的action sheet</h2>
 <br/>
 <h2>components/header.vue 封装了mui的header</h2>
 <br/>
