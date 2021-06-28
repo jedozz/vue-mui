@@ -81,7 +81,8 @@ vue2.6 + mui3.7.2 封装控件
 <p>textWrap，文字是否可以换行，默认false</p>
 <p>width，宽度，默认auto</p>
 <br/>
-<h2>components/validationError.vue 错误提示，封装了一下components/tooltip.vue</h2>
+<h2>components/validationError.vue 错误提示</h2>
+<p>封装了一下components/tooltip.vue</p>
 <p>依赖components/tooltip.vue</p>
 <p>组件属性：</p>
 <p>message，标签内容</p>
