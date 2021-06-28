@@ -1,4 +1,3 @@
-
 components/geolocationBtn.vue
 components/baiduMap.vue
 components/scanBtn.vue
@@ -9,7 +8,6 @@ js/comm.js
 js/language.js
 js/loadBMap.js
 js/mock.js
-js/mui.loader.js
 js/update.js
 js/vee-validate.loader.js
 js/WLanH5PlusPlugin.js
