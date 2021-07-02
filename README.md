@@ -92,3 +92,6 @@ vue2.6 + mui3.7.2 封装控件
 <p>textWrap，文字是否可以换行，默认false</p>
 <p>width，宽度，默认auto</p>
 <br/>
+<h2>js/yj.vuerouter.js 手机单页app，实现页面进退功能</h2>
+<p>依赖css/pageaniimation.css</p>
+<br/>

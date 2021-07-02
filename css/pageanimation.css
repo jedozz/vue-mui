@@ -1,0 +1,51 @@
+/* 2021.05.08 */
+.pageanimation-fade-enter-active, .pageanimation-fade-leave-active {
+    transition: opacity 0.5s;
+}
+
+.pageanimation-fade-enter, .pageanimation-fade-leave-to {
+    opacity: 0;
+}
+
+.pageanimation-fade-leave, .pageanimation-fade-enter-to {
+    opacity: 1;
+}
+
+.pageanimation-slidein-enter-active, .pageanimation-slidein-leave-active, .pageanimation-slideout-enter-active, .pageanimation-slideout-leave-active {
+    transition: all 0.5s;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.pageanimation-slidein-enter-active:after, .pageanimation-slidein-leave-active:after, .pageanimation-slideout-enter-active:after, .pageanimation-slideout-leave-active:after {
+    content: " ";
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 11;
+}
+
+.pageanimation-slidein-enter {
+    transform: translateX(100%);
+}
+
+.pageanimation-slidein-leave-to {
+    transform: translateX(-20%);
+}
+
+.pageanimation-slideout-leave-active {
+    z-index: 1;
+}
+
+.pageanimation-slideout-leave-to {
+    transform: translateX(100%);
+}
+
+.pageanimation-slideout-enter {
+    transform: translateX(-20%);
+}
