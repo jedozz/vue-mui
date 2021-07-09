@@ -1,6 +1,6 @@
-//2021.06.16
+//2021.07.09
 <template>
-  <div class="mui-scroll-wrapper haslogo">
+  <div class="mui-scroll-wrapper haslogo" @scroll="onScroll">
     <div class="mui-scroll" ref="pulldown">
       <slot></slot>
     </div>
@@ -49,6 +49,7 @@ export default {
       scroll: null,
       pulldown: null,
       timeoutSeed: null,
+      innerScrollY: null,
     };
   },
   mounted() {
@@ -84,6 +85,11 @@ export default {
         this.pulldown.endPullDownToRefresh();
       }
     },
+    scrollY() {
+      if (this.scrollY != this.innerScrollY) {
+        this.scroll.scrollTo(0, this.scrollY, 200);
+      }
+    },
   },
   beforeDestroy() {
     if (this.pulldown && this.pulldown.loading) {
@@ -98,11 +104,9 @@ export default {
     }
   },
   methods: {
-    scrollTo(y, time) {
-      time = time == null ? 300 : time;
-      if (this.scroll) {
-        this.scroll.scrollTo(0, y, time);
-      }
+    onScroll(e) {
+      this.innerScrollY = e.detail.y;
+      this.$emit("update:scrollY", this.innerScrollY);
     },
   },
   props: {
@@ -115,6 +119,7 @@ export default {
       type: Number,
       default: 10000,
     },
+    scrollY: Number,
   },
 };
 </script>

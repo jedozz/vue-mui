@@ -55,6 +55,7 @@ vue2.6 + mui3.7.2 封装控件
 <p>enablePulldown，是否开启下拉刷新的功能，类型bool</p>
 <p>pulling，刷新中，类型bool，支持sync</p>
 <p>pulldownTimeout，下拉超时时间，类型number</p>
+<p>scrollY，当前Y轴位置，支持sync</p>
 <br/>
 <h2>components/search.vue 搜索框</h2>
 <p>目前暂时只支持绑定input事件</p>
