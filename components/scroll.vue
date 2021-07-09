@@ -1,4 +1,4 @@
-//2021.07.09
+//2021.07.09 17:04
 <template>
   <div class="mui-scroll-wrapper haslogo" @scroll="onScroll">
     <div class="mui-scroll" ref="pulldown">
@@ -86,7 +86,7 @@ export default {
       }
     },
     scrollY() {
-      if (this.scrollY != this.innerScrollY) {
+      if (this.scroll && this.scrollY != this.innerScrollY) {
         this.scroll.scrollTo(0, this.scrollY, 200);
       }
     },
