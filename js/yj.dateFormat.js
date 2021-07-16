@@ -1,4 +1,4 @@
-//2020.06.23
+//2021.05.08
 Date.prototype.format = function(fmt) {
 	var o = {
 		"M+": this.getMonth() + 1, //月份           

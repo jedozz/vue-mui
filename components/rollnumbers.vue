@@ -1,4 +1,4 @@
-//2021.06.22
+//2021.07.16
 <template>
   <div class="rollnumbers">
     <transition-group name="rollnumber">
@@ -66,9 +66,7 @@ export default {
     if (this.number == null) {
       this.start();
     } else {
-      console.log(this.bits);
       this.bits = this.getBits();
-      console.log(this.bits);
     }
   },
   methods: {
