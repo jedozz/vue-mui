@@ -1,4 +1,4 @@
-//2021.06.09 9:15
+//2021.07.20
 <template>
   <div class="imgs" ref="imgs">
     <div
@@ -154,6 +154,10 @@ export default {
       type: Boolean,
       default: false,
     },
+  },
+  model: {
+    prop: "images",
+    event: "changed",
   },
 };
 </script>
