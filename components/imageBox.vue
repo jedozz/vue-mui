@@ -1,4 +1,4 @@
-//2021.07.20
+//2021.07.21
 <template>
   <div class="imgs" ref="imgs">
     <div
@@ -87,6 +87,7 @@ export default {
     var that = this;
     that.$nextTick(() => {
       that.imgsHeight = (that.$refs.imgs.clientWidth - 50) / 5 + "px";
+      mui.previewImage();
     });
   },
   methods: {
